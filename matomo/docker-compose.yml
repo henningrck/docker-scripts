@@ -4,6 +4,10 @@ networks:
   proxy:
     external: true
 
+volumes:
+  matomo:
+  mysql:
+
 services:
   matomo:
     image: matomo:latest
@@ -21,7 +25,7 @@ services:
       - default
       - proxy
     volumes:
-      - ./data/matomo:/var/www/html
+      - matomo:/var/www/html
     depends_on:
       - mysql
 
@@ -35,4 +39,4 @@ services:
     networks:
       - default
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql

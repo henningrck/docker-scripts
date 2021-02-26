@@ -22,7 +22,7 @@ services:
       - default
       - proxy
     volumes:
-      - ./data/wordpress:/var/www/html
+      - wordpress:/var/www/html
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     depends_on:
       - mysql
@@ -37,4 +37,8 @@ services:
     networks:
       - default
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql
+
+volumes:
+  wordpress:
+  mysql:

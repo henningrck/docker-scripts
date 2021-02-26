@@ -4,6 +4,11 @@ networks:
   proxy:
     external: true
 
+volumes:
+  certs:
+  vhost:
+  html:
+
 services:
   nginx:
     image: jwilder/nginx-proxy:latest
@@ -16,9 +21,9 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro
-      - ./data/certs:/etc/nginx/certs:ro
-      - ./data/vhost.d:/etc/nginx/vhost.d
-      - ./data/html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:ro
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
     labels:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: ""
 
@@ -30,6 +35,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro
-      - ./data/certs:/etc/nginx/certs:rw
-      - ./data/vhost.d:/etc/nginx/vhost.d
-      - ./data/html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:rw
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html

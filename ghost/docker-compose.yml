@@ -4,6 +4,10 @@ networks:
   proxy:
     external: true
 
+volumes:
+  ghost:
+  mysql:
+
 services:
   ghost:
     image: ghost:latest
@@ -23,7 +27,7 @@ services:
       - default
       - proxy
     volumes:
-      - ./data/ghost:/var/lib/ghost/content
+      - ghost:/var/lib/ghost/content
     depends_on:
       - mysql
 
@@ -37,4 +41,4 @@ services:
     networks:
       - default
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql

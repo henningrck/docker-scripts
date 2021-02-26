@@ -4,6 +4,11 @@ networks:
   proxy:
     external: true
 
+volumes:
+  gitlab-config:
+  gitlab-logs:
+  gitlab-data:
+
 services:
   gitlab:
     image: gitlab/gitlab-ce:latest
@@ -28,6 +33,6 @@ services:
       - default
       - proxy
     volumes:
-      - ./data/config:/etc/gitlab
-      - ./data/logs:/var/log/gitlab
-      - ./data/data:/var/opt/gitlab
+      - gitlab-config:/etc/gitlab
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
