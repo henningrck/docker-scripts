@@ -18,8 +18,8 @@
   "editable": true,
   "gnetId": 893,
   "graphTooltip": 1,
-  "id": 2,
-  "iteration": 1614366683654,
+  "id": 1,
+  "iteration": 1614710704210,
   "links": [],
   "panels": [
     {
@@ -37,7 +37,6 @@
               "value": "null"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -77,9 +76,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "expr": "count(rate(container_last_seen{name=~\".+\"}[$interval]))",
@@ -110,7 +110,6 @@
           ],
           "max": 1,
           "min": 0,
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -152,9 +151,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "text": {}
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "expr": "min((node_filesystem_size_bytes{fstype=~\"xfs|ext4\", instance=\"node-exporter:9100\"} - node_filesystem_free_bytes{fstype=~\"xfs|ext4\", instance=\"node-exporter:9100\"}) / node_filesystem_size_bytes{fstype=~\"xfs|ext4\", instance=\"node-exporter:9100\"})",
@@ -188,7 +188,6 @@
           ],
           "max": 100,
           "min": 0,
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -230,9 +229,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "text": {}
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "expr": "((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100  ",
@@ -263,7 +263,6 @@
           ],
           "max": 500000000,
           "min": 0,
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -301,9 +300,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "text": {}
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "expr": "(node_memory_SwapTotal_bytes{instance=~'node-exporter:9100'} - node_memory_SwapFree_bytes{instance=~'node-exporter:9100'})",
@@ -334,7 +334,6 @@
               "value": "null"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -378,9 +377,10 @@
           "fields": "/^{instance=\"node-exporter:9100\", job=\"node-exporter\"}$/",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "targets": [
         {
           "expr": "node_load1{instance=\"node-exporter:9100\"} / count by(job, instance)(count by(job, instance, cpu)(node_cpu_seconds_total{instance=\"node-exporter:9100\"}))",
@@ -439,7 +439,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 1,
       "points": false,
       "renderer": "flot",
@@ -550,7 +550,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -631,7 +631,7 @@
           "label": "",
           "logBase": 1,
           "max": "100",
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -725,7 +725,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -735,9 +735,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_load1{instance=\"mon_node-exporter:9100\"} / count by(job, instance)(count by(job, instance, cpu)(node_cpu_seconds_total{instance=\"mon_node-exporter:9100\"}))",
+          "expr": "node_load1{instance=\"node-exporter:9100\"} / count by(job, instance)(count by(job, instance, cpu)(node_cpu_seconds_total{instance=\"node-exporter:9100\"}))",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 2,
+          "legendFormat": "",
           "refId": "A",
           "step": 600
         }
@@ -748,7 +750,8 @@
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 1.25
+          "value": 1.25,
+          "visible": true
         }
       ],
       "timeFrom": null,
@@ -771,14 +774,16 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:215",
           "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": "1.50",
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:216",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -875,7 +880,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -905,7 +910,8 @@
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 35000000000
+          "value": 35000000000,
+          "visible": true
         }
       ],
       "timeFrom": null,
@@ -1032,7 +1038,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1192,7 +1198,8 @@
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 3500000000
+          "value": 3500000000,
+          "visible": true
         }
       ],
       "timeFrom": null,
@@ -1283,7 +1290,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1398,7 +1405,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1511,7 +1518,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1622,7 +1629,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1663,13 +1670,16 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:119",
           "format": "percent",
           "label": "",
           "logBase": 1,
-          "max": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:120",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1727,7 +1737,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1839,7 +1849,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "7.4.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2154,7 +2164,7 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 26,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2168,6 +2178,7 @@
           "text": "30s",
           "value": "30s"
         },
+        "description": null,
         "error": null,
         "hide": 0,
         "label": "interval",
@@ -2293,5 +2304,5 @@
   "timezone": "browser",
   "title": "Docker and system monitoring",
   "uid": "0E0FhC7Wz",
-  "version": 2
+  "version": 1
 }
