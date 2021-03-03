@@ -4,6 +4,10 @@ networks:
   proxy:
     external: true
 
+volumes:
+  wordpress:
+  mysql:
+
 services:
   wordpress:
     build: .
@@ -38,7 +42,3 @@ services:
       - default
     volumes:
       - mysql:/var/lib/mysql
-
-volumes:
-  wordpress:
-  mysql:
