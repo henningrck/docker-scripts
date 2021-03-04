@@ -2,7 +2,7 @@ FROM cm2network/steamcmd
 
 RUN /home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/steam/valheim/server +app_update 896660 validate +exit
 RUN mkdir -p /home/steam/valheim/data
-WORKDIR /home/steam/valheim
+WORKDIR /home/steam/valheim/server
 ADD start.sh .
 
 VOLUME /home/steam/valheim/data
