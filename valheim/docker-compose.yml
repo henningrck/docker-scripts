@@ -1,7 +1,6 @@
 version: "3"
 
 volumes:
-  valheim-server:
   valheim-data:
 
 services:
@@ -17,5 +16,4 @@ services:
       - "2457:2457/udp"
       - "2458:2458/udp"
     volumes:
-      - valheim-server:/home/steam/valheim/server
       - valheim-data:/home/steam/valheim/data
