@@ -9,7 +9,7 @@ ADD start.sh .
 USER root
 RUN apt-get update && apt-get install -y wget tar libc6-dev
 USER steam
-RUN wget https://github.com/valheimPlus/ValheimPlus/releases/download/0.9/UnixServer.tar.gz
+RUN curl -s https://api.github.com/repos/valheimPlus/ValheimPlus/releases/latest | grep browser_download_url | grep UnixServer.tar.gz | cut -d '"' -f 4 | wget -qi -
 RUN tar -xzf UnixServer.tar.gz
 RUN rm UnixServer.tar.gz
 
