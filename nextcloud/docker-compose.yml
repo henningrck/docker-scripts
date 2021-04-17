@@ -6,7 +6,7 @@ networks:
 
 volumes:
   nextcloud:
-    mariadb:
+  mariadb:
 
 services:
   nextcloud:
