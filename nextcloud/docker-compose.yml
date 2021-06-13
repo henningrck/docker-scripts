@@ -5,7 +5,6 @@ networks:
     external: true
 
 volumes:
-  nextcloud:
   mariadb:
 
 services:
@@ -25,7 +24,7 @@ services:
       - default
       - proxy
     volumes:
-      - nextcloud:/var/www/html
+      - ${LOCAL_DIRECTORY}:/var/www/html
     depends_on:
       - mariadb
 
