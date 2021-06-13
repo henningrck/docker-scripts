@@ -29,9 +29,27 @@ services:
     depends_on:
       - mysql
 
+  matomo-cron:
+    image: matomo:latest
+    restart: always
+    volumes:
+      - matomo:/var/www/html
+    depends_on:
+      - matomo
+      - mysql
+    entrypoint: |
+      bash -c 'bash -s <<EOF
+      trap "break;exit" SIGHUP SIGINT SIGTERM
+      while /bin/true; do
+      su -s "/bin/bash" -c "/usr/local/bin/php /var/www/html/console core:archive" www-data
+      sleep 900
+      done
+      EOF'
+
   mysql:
     image: mysql:5.7
     restart: always
+    command: --max_allowed_packet=64M
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=matomo
