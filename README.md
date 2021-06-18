@@ -21,3 +21,12 @@ Restore a single volume:
 ```sh
 ./restore.sh [backup file] [volume]
 ```
+
+## Mount and `cd` through a volume
+
+Spawn a Ubuntu container and mount the volume into it:
+
+```sh
+./mount.sh [volume]
+cd /data
+```
